@@ -25,8 +25,8 @@ Here is the google drive link for the dataset - [Click to Download](https://driv
  - Before starting your work on an issue, do comment something of the sort "I want to work on this".
 But remember, **not all PRs would be accepted for an issue**.
  - Create a new branch while working whenever possible.
- - It is a request to **not make the changes in the given code file**, but create a new folder `<YOUR-ROLL-NO>`
-and put the code files in it. If you are submitting the code in `IPYNB` format, make sure you link **Google Colab** so it can run on it easily.
+ - It is a request to **not make the changes in the given code file**, rather name the file for each issue as  `<ISSUE No._YOUR-ROLL-NO>`. 
+If you are submitting the code in `IPYNB` format, make sure you link **Google Colab** so it can run on it easily.
 
 
 ## :+1: Credits
