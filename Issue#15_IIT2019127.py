@@ -79,6 +79,7 @@ out = cv2.VideoWriter(filename, get_video_type(filename), 25, get_dims(cap, res)
 
 while cap.isOpened():
     _,img=cap.read()
+    img=cv2.flip(img,1,1)
 
     rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -96,18 +97,19 @@ while cap.isOpened():
         face_img=face_img/255.0
         face_img=np.reshape(face_img,(224,224,3))
         face_img=np.expand_dims(face_img,axis=0)
+        faces = np.vstack([face_img])
         faces = np.array(faces, dtype="float32")
         
         pred=mymodel.predict_classes(face_img) 
         _, accuracy=mymodel.predict(face_img)[0]
-        print(pred)
-        if  (pred[0]==0 and accuracy<0.5):
-            cv2.putText(img,'MASK',(x,y-30),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,255,0),4) 
-            cv2.putText(img,f'Accuracy (%): {(1-accuracy)*100:.2f}',(x,y-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,255,0),4)
+#         print(pred)
+        if  pred[0]==0 and accuracy < 0.5:
+            cv2.putText(img,'MASK',(x,y-30),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,255,0),2) 
+            cv2.putText(img,f'Accuracy (%): {(1-accuracy)*100:.2f}',(x,y-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,255,0),2)
             cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2) 
         else:
-            cv2.putText(img,'NO MASK',(x,y-30),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,255),4)
-            cv2.putText(img,f'Accuracy (%): {accuracy*100:.2f}',(x,y-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,255),4)
+            cv2.putText(img,'NO MASK',(x,y-30),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,255),2)
+            cv2.putText(img,f'Accuracy (%): {accuracy*100:.2f}',(x,y-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,255),2)
             cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2) 
             
         datet=str(datetime.datetime.now())
