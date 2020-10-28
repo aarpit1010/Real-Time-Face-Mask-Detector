@@ -19,7 +19,7 @@ from keras.models import model_from_json
 import cv2
 import datetime
 # Importing the saved model from the IPython notebook
-mymodel=load_model('D:/GitHub/Real-Time-Face-Mask-Detector/train_model.h5')
+mymodel=load_model('D:/GitHub/Real-Time-Face-Mask-Detector/dev_model.h5')
 
 # Importing the Face Classifier XML file containing all features of the face
 face_classifier=cv2.CascadeClassifier('D:/GitHub/Real-Time-Face-Mask-Detector/haarcascade_frontalface_default.xml')
